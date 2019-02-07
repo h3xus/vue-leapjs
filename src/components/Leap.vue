@@ -1,7 +1,7 @@
 <template>
   <div class="leap">
     <div>
-      <h1>{{power}}</h1>
+      <h1>{{count}}</h1>
       <p>{{content}}</p>
     </div>
   </div>
@@ -17,43 +17,41 @@ export default {
   },  
   data: function() {
     return {
-      content: "content"
+      content: "action here",
+      count: Number
     }
   },
   methods: {
     startrunner: function() {
+        this.count = 0;
         // eslint-disable-next-line
         // console.log(this);
         leapjs.loop({      
         hand: (frame) => {
             // eslint-disable-next-line
-            console.log(this);
+            // console.log(this);
           if( frame.frame.gestures.length > 0 ){
             // eslint-disable-next-line            
            this.increase();
             this.content = frame;
             // eslint-disable-next-line
-            console.log( frame );
+            // console.log( frame );
           }
-
             // eslint-disable-next-line
-            console.log( frame);          
+            // console.log( frame);          
         }      
       });           
     },
     increase: function(){
-      this.power++;
+      this.count++;
     }
   }, 
   created() {
-    // start: {
       this.startrunner()
-    // }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .square{
   width: 100px;
