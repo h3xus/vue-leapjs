@@ -1,20 +1,28 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <LeapComponent/>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>{{title}}</h1>
+    <LeapComponent :power="0"></LeapComponent>
   </div>
 </template>
 
 <script>
 import LeapComponent from './components/Leap.vue'
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld,
     LeapComponent
+  },
+  data: function () {
+    return {
+      title: "Vue leap"
+    }
+  },
+  methods: {
+    
+  },
+  computed:{
+
   }
 }
 </script>

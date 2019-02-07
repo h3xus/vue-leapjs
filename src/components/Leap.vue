@@ -1,5 +1,9 @@
 <template>
   <div class="leap">
+    <div>
+      <h1>{{power}}</h1>
+      <p>{{content}}</p>
+    </div>
   </div>
 </template>
 
@@ -7,35 +11,41 @@
 import leapjs from 'leapjs';
 
 export default {
-  name: 'LeapComp',
+  name: 'LeapComponent',
   props: {
-    power: String
-  },
-  
-  data: function () {
+    power: Number
+  },  
+  data: function() {
     return {
-      count: 0
+      content: "content"
     }
   },
   methods: {
-    startrunner: function(){
-      if (leapjs) {
+    startrunner: function() {
+        // eslint-disable-next-line
+        // console.log(this);
         leapjs.loop({      
-        hand: function(frame){
-          // eslint-disable-next-line
-          console.log( frame );
+        hand: (frame) => {
+            // eslint-disable-next-line
+            console.log(this);
+          if( frame.frame.gestures.length > 0 ){
+            // eslint-disable-next-line            
+           this.increase();
+            this.content = frame;
+            // eslint-disable-next-line
+            console.log( frame );
+          }
+
+            // eslint-disable-next-line
+            console.log( frame);          
         }      
-      });
-      } else {
-                 // eslint-disable-next-line
-          console.log('no leap controller' );
-      }
+      });           
+    },
+    increase: function(){
+      this.power++;
     }
   }, 
-  mounted: {
-      
-  },
-  created: function() {
+  created() {
     // start: {
       this.startrunner()
     // }
@@ -45,6 +55,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.square{
+  width: 100px;
+  height: 100px;
+}
+
 h3 {
   margin: 40px 0 0;
 }
